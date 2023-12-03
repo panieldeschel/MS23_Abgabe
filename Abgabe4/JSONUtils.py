@@ -1,7 +1,7 @@
 import json   
 
 def readData(path):
-    file = open('words.json')
+    file = open(path)
     json_data = json.load(file)
     return json_data
 
