@@ -1,0 +1,11 @@
+name: GitHub Actions Test
+run-name: ${{ github.actor }} is testing
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ github.repository }} - Branch ${{ github.ref }}"
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo "Test erfolgreich"
