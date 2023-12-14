@@ -1,11 +1,27 @@
-name: GitHub Actions Test
-run-name: ${{ github.actor }} is testing
+name: Python package
+
 on: [push]
+
 jobs:
-  Explore-GitHub-Actions:
+  build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - run: echo "${{ github.repository }} - Branch ${{ github.ref }}"
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - run: echo "Test erfolgreich"
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+          architecture: 'x64'
+
+      - name: Python version
+        run: python -c "import sys; print(sys.version)"
+      
+      - name: Test with pytest
+         run: |
+          pip install pytest pytest-cov
+          pytest .../Abgabe6/Hangman.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+
+
