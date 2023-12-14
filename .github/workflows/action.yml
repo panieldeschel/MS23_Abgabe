@@ -26,4 +26,5 @@ jobs:
       - name: Test Coverage
         run: |
           pip install pytest pytest-cov
-          pytest Abgabe6/Hangman.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+          cd Abgabe6/
+          pytest Hangman.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
