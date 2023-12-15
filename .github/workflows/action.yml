@@ -23,10 +23,10 @@ jobs:
       - name: Build Windows Executable
         run: |
           python -m pip install pyinstaller
-          pyinstaller --onefile Hangman.py
+          pyinstaller --onefile Abgabe6/Hangman.py
 
       - name: Upload Executable
         uses: actions/upload-artifact@v2
         with:
           name: hangmanGame
-          path: build/
+          path: Abgabe6/build/
