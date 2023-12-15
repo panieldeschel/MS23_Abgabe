@@ -1,16 +1,17 @@
-name: Python package
+name: Windows Executable Build
 
 on: [push]
 
 jobs:
   build:
-
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v2
         with:
           python-version: '3.12'
 
@@ -19,8 +20,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Test Coverage
+      - name: Build Windows Executable
         run: |
-          pip install pytest pytest-cov
-          cd Abgabe6/
-          pytest Hangman.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+          python -m pip install pyinstaller
+          pyinstaller --onefile Hangman.py
+
+      - name: Upload Executable
+        uses: actions/upload-artifact@v2
+        with:
+          name: hangmanGame
+          path: build/
