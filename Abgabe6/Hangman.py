@@ -4,7 +4,7 @@ import os
 import WordGuesser
 import keyboard
 
-wordGuesser = WordGuesser.WordGuesser()
+wordGuesser = WordGuesser.WordGueser()      # Hier habe ich einen Tippfehler eingebaut! WordGueser
 
 # loop the game until the word is completed
 while True:
