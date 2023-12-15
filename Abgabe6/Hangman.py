@@ -7,7 +7,7 @@ import keyboard
 wordGuesser = WordGuesser.WordGueser()      # Hier habe ich einen Tippfehler eingebaut! WordGueser
 
 # loop the game until the word is completed
-while True:
+while Tru:                                  # Hier habe ich noch einen Tippfehler eingebaut! Tru
     # reset canvas and write UI
     os.system('cls')                            # only works on Windows  
     print('''
