@@ -9,5 +9,5 @@ def read_root():
 
 @app.post("/moinify_text")
 async def moinify_text(text: str):
-    moinified_text = moinify(text)
+    moinified_text = moinifier.moinify(text)
     return {"original_text": text, "moinified_text": moinified_text}

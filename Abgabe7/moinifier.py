@@ -25,3 +25,4 @@ def moinify(text):
     for word in replace_these:
         text = text.replace(word, "Moin")    
     return text
+
