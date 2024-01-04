@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-import moinify
+import moinifier
 
 app = FastAPI()
 
@@ -7,6 +7,7 @@ app = FastAPI()
 def read_root():
     return {"Moin": "Welt"}
 
-@app.get("/items/{item_id}")
-def moinify(item_id: int, text: str = None):
-    return {"item_id": item_id, "query_param": query_param}
+@app.post("/modify-text")
+async def moinify_text(text: str):
+    moinified_text = moinify(text)
+    return {"original_text": text, "moinified_text": moinified_text}
