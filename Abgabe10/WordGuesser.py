@@ -2,45 +2,19 @@ import JSONUtils
 import random 
 import re       
 
-class WordGuesser:
-    def __init__(self):
-        # get a word and hide it
-        self.word = self.initWord()                           # word to guess
-        self.progress = self.initProgressString(self.word)    # progress of guessing
+def pickWord(path):
+    available_words: Final = JSONUtils.readList(path)
+    return random.choice(available_words)
 
-    def initWord(self):
-        # available words are listed in "./words.json"
-        available_words = JSONUtils.readList('words.json')
-        # pick a random available word
-        return random.choice(available_words)
+def hideWord(word):
+    return re.sub(r'\w', '_', word)
 
-    def initProgressString(self, word):
-        # replace every letter with _ using RegExs
-        hidden_word = re.sub(r'\w', '_', word)
-        return hidden_word
+def guessingLetter(letter, hidden_word, full_word):
+    new_hidden_word: Final = [
+        full_word[num]
+        if character.lower() == letter
+        else hidden_word[num]
+        for num, character in enumerate(full_word)
+    ]
 
-
-
-    # Get Properties
-    def getProgressString(self):
-        return self.progress
- 
-    def isFinished(self):
-        if self.progress == self.word:
-            return True
-        else:
-            return False
-
-
-
-    # Write Letter
-    def letterGuessed(self, letter):
-        # revert every _ that hides the guessed letter
-        for num, character in enumerate(self.word):
-            if character.lower() == letter:
-                # replace the _ in the middle of the string that hides the correctly guessed letter
-                # keep the old progress before and after that character
-                self.progress = self.progress[:num] + self.word[num] + self.progress[num + 1:]
-
-
-        
+    return ''.join(new_hidden_word)
